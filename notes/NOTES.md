@@ -380,3 +380,113 @@ search() e indexOf() sembrano due metodi identici, ma la differenza è che searc
 
 match()
 Ritorna un array che contiene il risultato di far combaciare una stringa con un'altra stringa.
+ad esempio --> passo come parametro "ciao", mi ritorna soltanto la prima occorrenza di "ciao". 
+
+matchAll()
+Ritorna un iteratore che contiene i risultati di matchare una stringa su una stringa.
+const iterator = text.matchAll("Cats"); ritorna tutte le occorrenze di "Cats".
+
+includes()
+Ritorna true se la stringa contiene un valore specifico. Se no, false.
+let text = "Hello world, welcome to the universe.";
+text.includes("world"); // true
+
+let text = "Hello world, welcome to the universe.";
+text.includes("world", 12); // false
+
+startsWith()
+True se la stringa inizia con un valore specifico, se no False.
+let text = "Hello world, welcome to the universe.";
+text.startsWith("Hello"); // true
+
+let text = "Hello world, welcome to the universe.";
+text.startsWith("world") // false
+
+Si può anche specificare la posizione iniziale della ricerca.
+
+endsWith()
+Uguale, ma per la fine.
+
+I condizionali
+
+I comparatori
+
+In breve:
+Più grande / Più piccolo: a > b, b < a
+
+Più grande/più piccolo o uguale: a >= b, b <= a
+
+Uguaglianza: a == b. 
+Memo: se uso un solo "=", sto assegnando un valore, non sto testando l'uguaglianza.
+
+Diversità: a != b.
+
+Tutti i comparatori restituiscono un booleano.
+
+alert( 2 > 1 );  // true (corretto)
+alert( 2 == 1 ); // false (sbagliato)
+alert( 2 != 1 ); // true (corretto)
+
+Puoi chiaramente assegnare un comparatore a una variabile:
+
+let result = 5 > 4
+alert ( result ) // true
+
+Si possono comparare le stringhe. In questo caso verranno comparati i caratteri, carattere per carattere, con un confronto. 
+
+Nel caso in cui comparassimo valori di diverso tipo, tutti i valori vengono convertiti in numeri.
+
+alert( '2' > 1 ); // vero, la stringa '2' diventa 2
+alert( '01' == 1 ); // vero, la stringa '01' diventa 1
+
+Uguale coi booleani, che sono false == 0 e true == 1.
+
+A questo punto nasce un problema. Javascript non fa differenza tra 0 e false, ad esempio. Uguale una stringa vuota, che darà vero se testata l'uguaglianza con false. Questo perché i valori vengono convertiti prima di essere testati dai comparatori. 
+
+Con === testiamo l'uguaglianza senza convertire nulla.
+
+In altre parole, se a e b sono di valore diverso, se con == potrebbero dare vero o falso in base alla conversione, con === saranno sempre e immediatamente falsi.
+
+Null e undefined si comportano in maniera particolare.
+Se si paragonano loro due, su === daranno false, in quanto sono valori diversi.
+alert( null === undefined ); // false
+
+In caso di un equality check non-strict: si equivalgono. Così è stato definito alla base.
+
+Per i comparatori matematici:
+Null e undefined sono convertiti in numeri, null 0, undefined NaN.
+
+Casi particolari: Null vs 0:
+
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
+
+null == undefined → true
+regola speciale di ==
+
+null > 0 → false
+confronto relazionale: null → 0 → 0 > 0 è false
+
+null == 0 → false
+== non converte null in 0; null con == è uguale solo a null/undefined
+
+null >= 0 → true
+confronto relazionale: null → 0 → 0 >= 0 è true
+
+Undefined non dovrebbe essere comparato con altri valori.
+
+Operatori logici
+
+Abbiamo || (OR), && (AND), ! (NOT) e ?? (Nullish Coalescing).
+
+OR è rappresentato da due linee ||. 
+Nella programmazione classica l'OR manipola soltanto i valori booleani. Se uno dei due valori è vero, allora ritorna vero, se no è falso. Questi sono i casi tipo:
+
+alert( true || true );   // true
+alert( false || true );  // true
+alert( true || false );  // true
+alert( false || false ); // false
+
+Nel caso in cui uno degli operatori non è un booleano, viene convertito in tale.
+Ad esempio, 1 è true, 0 è false.
