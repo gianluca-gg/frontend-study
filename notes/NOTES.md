@@ -476,6 +476,31 @@ confronto relazionale: null → 0 → 0 >= 0 è true
 
 Undefined non dovrebbe essere comparato con altri valori.
 
+if / else
+A volte dobbiamo effettuare operazioni diverse in base alle condizioni.
+Per farlo, possiamo utilizzare l'if statement l'operatore ?. 
+L'if statement valuta una condizione tra parentesi e se è vera effettua un blocco di codice.
+Conversione booleana
+L'if statement valuta l'esperessione tra parentesi e la converte in un parametro booleano.
+Ritorniamo ai type conversions:
+- Un numero 0, stringa "", null, undefined, NaN = false.
+- tutto il resto è true.
+
+se l'if statement è seguito da un else, il blocco di codice relativo all'else verrà eseguito se l'evaluation tra parentesi dell'if è falsa.
+A volte vorremo testare una serie numerosa di condizioni. in quel caso, l'"else if" può venirci in soccorso.
+A volte dobbiamo assegnare a una variabile un valore dipendente da una condizione.
+Lo si può fare in una maniera verbosa oppure col punto di domanda ?.
+let result = condition ? value1 : value2;
+Con più "?" possiamo ritornare un valore che dipende da più condizioni.
+A volte il punto di domanda viene usato in sostituzione di if. 
+
+let company = prompt('Which company created JavaScript?', '');
+
+(company == 'Netscape') ?
+   alert('Right!') : alert('Wrong.');
+
+Questo utilizzo NON è consigliato.
+
 Operatori logici
 
 Abbiamo || (OR), && (AND), ! (NOT) e ?? (Nullish Coalescing).
@@ -490,3 +515,42 @@ alert( false || false ); // false
 
 Nel caso in cui uno degli operatori non è un booleano, viene convertito in tale.
 Ad esempio, 1 è true, 0 è false.
+OR è utilizzato solitamente in un if statement per eseguire un blocco di codice o meno nel caso in cui almeno una delle due condizioni risultasse true.
+
+L'OR || trova il primo valore true. Dato multipli OR:
+
+result = value1 || value2 || value3;
+
+L'operatore logico verrà valutato da sinistra a destra. Il primo valore vero verrà ritornato. Se non ce ne sono, ritorna l'ultimo operando.
+Quindi: o viene ritornato il primo valore true oppure l'ultimo falso.
+
+alert( 1 || 0 ); // 1 (1 is truthy)
+
+alert( null || 1 ); // 1 (1 is the first truthy value)
+alert( null || 0 || 1 ); // 1 (the first truthy value)
+
+alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+
+Avere il primo valore true da una lista di variabili o espressioni
+Se abbiamo una serie di espressioni o variabili, verrà scelta quella valorizzata
+
+let firstName = "";
+let lastName = "";
+let nickName = "SuperCoder";
+
+alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
+
+Short-circuit Evaluation
+Un'altra feature dell'OR è la short circuit evaluation.
+Significa che || processa i suoi argomenti finché il primo valore true non viene raggiunto, interrompendo la catena successiva.
+
+Ad esempio, qui solo il secondo messaggio è stampato:
+
+true || alert("not printed");
+false || alert("printed");
+
+Nel primo caso la catena viene interrotta a "true".
+
+&& (AND)
+And viene rappresentato da &&.
+AND risulta vero se entrambi i valori sono true o false.
