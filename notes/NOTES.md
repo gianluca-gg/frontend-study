@@ -554,3 +554,35 @@ Nel primo caso la catena viene interrotta a "true".
 && (AND)
 And viene rappresentato da &&.
 AND risulta vero se entrambi i valori sono true o false.
+Ritorna il primo valore FALSE.
+Se tutti i valori sono true, ritorna l'ultimo operatore.
+Quindi: ritorna il primo valore false o l'ultimo true.
+
+Occhio: precedenze. && viene prima di ||.
+
+!NOT
+!not converte l'operatore di un booleano true/false. Ritorna il valore inverso.
+Ad esempio:
+alert( !true ); // false
+alert( !0 ); // true
+!!not è spesso usato per convertire un valore in un booleano.
+
+Switch statement
+Può sostituire numerosi if.
+
+la sintassi è così descritta:
+
+switch(x) {
+  case 'value1':  // if (x === 'value1')
+    ...
+    [break]
+
+  case 'value2':  // if (x === 'value2')
+    ...
+    [break]
+
+  default:
+    ...
+    [break]
+}
+
