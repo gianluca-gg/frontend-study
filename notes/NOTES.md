@@ -586,3 +586,4 @@ switch(x) {
     [break]
 }
 
+Funzioni
