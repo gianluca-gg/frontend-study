@@ -587,3 +587,20 @@ switch(x) {
 }
 
 Funzioni
+
+function favoriteAnimal(animal) {
+    return animal + " is my favorite animal!"
+}
+
+const message = favoriteAnimal('Goat')
+console.log(message)
+
+Parametri sono ciò che viene listato tra parentesi in una function declaration.
+"animal" poteva essere sostituito da qualsiasi parola.
+Ciò che stiamo comunicando a javascript, è che invieremo un valore alla nostra funzione favoriteAnimal.
+"animal" è soltanto un placeholder per il valore che verrà inviato.
+Qui:
+
+const message = favoriteAnimal('Goat')
+
+Stiamo dicendo: invia 'Goat' alla funzione favoriteAnimal e usa 'Goat' laddove ci sia il placeholder animal.
