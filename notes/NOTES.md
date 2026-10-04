@@ -604,3 +604,217 @@ Qui:
 const message = favoriteAnimal('Goat')
 
 Stiamo dicendo: invia 'Goat' alla funzione favoriteAnimal e usa 'Goat' laddove ci sia il placeholder animal.
+
+Local variable
+
+Una variabile presente all'interno di una funzione è visibile solo all'interno della stessa.
+
+Esempio:
+
+function showMessage() {
+  let message = "Hello, I'm JavaScript!"; // local variable
+
+  alert( message );
+}
+
+showMessage(); // Hello, I'm JavaScript!
+
+alert( message ); // <-- Error! The variable is local to the function
+
+Outer variables
+
+Una funzione può accedere a una variabile esterna, ad esempio:
+
+let userName = 'John';
+
+function showMessage() {
+  let message = 'Hello, ' + userName;
+  alert(message);
+}
+
+showMessage(); // Hello, John
+
+Può anche modificarla.
+
+let userName = 'John';
+
+function showMessage() {
+  userName = "Bob"; // (1) changed the outer variable
+
+  let message = 'Hello, ' + userName;
+  alert(message);
+}
+
+alert( userName ); // John before the function call
+
+showMessage();
+
+alert( userName ); // Bob, the value was modified by the function
+
+La variabile esterna viene utilizzata solo se non ce n'è una interna con lo stesso nome.
+
+let userName = 'John';
+
+function showMessage() {
+  let userName = "Bob"; // declare a local variable
+
+  let message = 'Hello, ' + userName; // Bob
+  alert(message);
+}
+
+// the function will create and use its own userName
+showMessage();
+
+alert( userName ); // John, unchanged, the function did not access the outer variable
+
+Parametri
+
+Possiamo passare dati arbitrati alla funzione usando i parametri:
+
+function showMessage(from, text) { // parameters: from, text
+  alert(from + ': ' + text);
+}
+
+showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+
+In questo caso, ogni volta che la funzione è chiamata stiamo passando i valori originali alle variabili locali from e test. Poi le funzioni utilizzeranno quei valori.
+
+Un altro esempio: abbiamo una variabile from e la passiamo alla funzione.
+
+function showMessage(from, text) {
+
+  from = '*' + from + '*'; // make "from" look nicer
+
+  alert( from + ': ' + text );
+}
+
+let from = "Ann";
+
+showMessage(from, "Hello"); // *Ann*: Hello
+
+// the value of "from" is the same, the function modified a local copy
+alert( from ); // Ann
+
+Quando un valore viene passato al parametro di una funzione, si chiama argument.
+
+In altre parole:
+
+- il parametro è la variabile listata tra parentesi nella dichirazione di una funzione
+- un argument è un valore che è passato alla funzione quando è chiamata.
+
+Valori di default
+
+Se non è previsto un argument, il valore di default sarà undefined.
+
+Ad esempio, la funzione di prima può essere chiamata così:
+
+showMessage("Ann");
+
+questo non è un errore. L'output sarà semplicemente "*Ann*: undefined". Siccome il valore di text non è passato, rimane undefined. 
+
+Possiamo specificare il valore di default utilizzando =
+
+function showMessage(from, text = "no text given") {
+  alert( from + ": " + text );
+}
+
+showMessage("Ann"); // Ann: no text given
+
+Ora se non passo il parametro text, il valore di default sarà "no text given".
+
+Il valore di default pouò essere passato anche se il parametro passato è undefined:
+
+showMessage("Ann", undefined); // Ann: no text given
+
+oltre a essere una stringa, il valore di default può essere qualcosa di più complesso, come una funzione.
+
+In javascript, un parametro di default è considerato ogni volta che la funzione vienne chiamata senza il rispettivo parametro.
+
+Alternative default parameters
+
+A volte ha senso assegnare un valore di default per parametri a uno stadio più tardo della function declaration.
+
+Possiamo letteralmente fare il check:
+
+function showMessage(text) {
+  // ...
+
+  if (text === undefined) { // if the parameter is missing
+    text = 'empty message';
+  }
+
+  alert(text);
+}
+
+showMessage(); // empty message
+
+oppure usare ||
+
+function showMessage(text) {
+  // if text is undefined or otherwise falsy, set it to 'empty'
+  text = text || 'empty';
+  ...
+}
+
+Con Javascript moderno, possiamo usare ??:
+
+function showCount(count) {
+  // if count is undefined or null, show "unknown"
+  alert(count ?? "unknown");
+}
+
+showCount(0); // 0
+showCount(null); // unknown
+showCount(); // unknown
+
+Una funzione può ritornare un valore nel codice chi8amto come risultato.
+
+Ad esempio può ritornare una somma:
+
+function sum(a, b) {
+  return a + b;
+}
+
+let result = sum(1, 2);
+alert( result ); // 3
+
+Il return può essere inserito ovunque in una funzione. Quando lo raggiungi, il codice si ferma.
+
+Possono esserci più return nella stessa funzione. Ad esempio:
+
+function checkAge(age) {
+  if (age >= 18) {
+    return true;
+  } else {
+    return confirm('Do you have permission from your parents?');
+  }
+}
+
+let age = prompt('How old are you?', 18);
+
+if ( checkAge(age) ) {
+  alert( 'Access granted' );
+} else {
+  alert( 'Access denied' );
+}
+
+Si può anche usare return senza un valore, in quel caso la funzione cessa immediatamente e basta.
+
+Se una funziona non ritorna niente, è come se ritornasse undefined.
+
+Un return vuoto è come ritornare undefined.
+
+Naming a function
+
+Le funzioni sono azioni, quindi il nome è spesso un verbo. Dev'essere breve, quanto più possibile accurato e che descriva il ruolo della funzione.
+
+E' pratica comune quella di far precedere il nome della funzione col prefisso di ciò che fa, vagamente.
+
+Esempi:
+"get…" – return a value,
+"calc…" – calculate something,
+"create…" – create something,
+"check…" – check something and return a boolean, etc.
+
+Una funzione dovrewbbe fare una cosa e basta, cioè la cosa descritta dal nome. Due azioni distinte richiederebbero due funzione diverse.
